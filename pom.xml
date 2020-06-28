@@ -172,7 +172,8 @@
                 <version>3.0.0-M4</version>
                 <configuration>
                     <suiteXmlFiles>
-                        <suiteXmlFile>{suiteFile}</suiteXmlFile>
+                        <suiteXmlFile>run_test_api.xml</suiteXmlFile>
+                        <suiteXmlFile>run_test_web.xml</suiteXmlFile>
                     </suiteXmlFiles>
                     <argLine>-javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"</argLine>
                 	<systemProperties>
