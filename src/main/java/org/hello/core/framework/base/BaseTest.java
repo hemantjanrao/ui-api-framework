@@ -19,7 +19,6 @@ import java.lang.reflect.Method;
 
 public class BaseTest {
 
-
     protected WebDriver driver;
     protected Logger log = Logger.getLogger(getClass());
 
@@ -43,14 +42,12 @@ public class BaseTest {
         log.info("=============================================== Ending test method [" + testMethod.getName()+"] ===================================");
     }
 
-
     /**
      * Method to read data input from csv file
-     * @param fileName
-     * @return
-     * @throws IOException
+     * @param fileName File Name
+     * @return String[][]
      */
-    protected  String[][] parseExcelDataToDataProvider(String fileName, String sheetName) throws IOException
+    protected  String[][] parseExcelDataToDataProvider(String fileName, String sheetName)
     {
         log.info("Reading data from excel '"+fileName+"' with sheet name '"+sheetName+"'");
         String[][] arrayExcelData = null;
@@ -70,16 +67,9 @@ public class BaseTest {
                 }
 
             }
-        }
-        catch (FileNotFoundException e) {
-            log.error("Error reading the exel fileException-"+e);
-        } catch (IOException e) {
-            log.error("Error reading the exel fileException-"+e);
-        } catch (BiffException e) {
+        } catch (IOException | BiffException e) {
             log.error("Error reading the exel fileException-"+e);
         }
         return arrayExcelData;
-
     }
-
 }

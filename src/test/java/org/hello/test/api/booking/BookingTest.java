@@ -3,14 +3,13 @@ package org.hello.test.api.booking;
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Story;
+import io.restassured.response.Response;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.RandomUtils;
 import org.hello.core.framework.annotation.Groups;
 import org.hello.core.framework.annotation.TestID;
 import org.hello.core.framework.base.BaseApiTest;
 import org.hello.core.framework.helper.TestHelper;
-import org.hello.core.framework.utils.Environment;
-import org.hello.core.framework.utils.PropertyUtils;
 import org.hello.api.client.BookingServer;
 import org.hello.api.entity.BookingModal;
 import org.hello.api.entity.response.BookingListResponse;
@@ -19,7 +18,6 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import javax.ws.rs.core.Response;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
@@ -31,7 +29,7 @@ public class BookingTest extends BaseApiTest {
 
     @BeforeClass
     public void beforeBookingClass(){
-        bookingServer = new BookingServer(PropertyUtils.get(Environment.API_HOST),PropertyUtils.getInt(Environment.API_PORT),PropertyUtils.get(Environment.API_PROTOCOL));
+        bookingServer = new BookingServer();
     }
 
     @Story("Bookings API")
@@ -40,7 +38,7 @@ public class BookingTest extends BaseApiTest {
     @TestID("36048093-9120-4e7d-87ec-9fd628736aa2")
     public void verifyGettingBookings(){
         Response res = bookingServer.getBooking();
-        Assert.assertEquals(res.getStatus(),200, "Response status code is not as expected");
+        Assert.assertEquals(res.statusCode(),200, "Response status code is not as expected");
         BookingListResponse bookings = TestHelper.deserializeJson(res, BookingListResponse.class);
         Assert.assertTrue(bookings.getBookingModalList().size()>2,"Atleast 2 bookings should be present");
     }
@@ -73,8 +71,9 @@ public class BookingTest extends BaseApiTest {
         dates.put("checkout",tomorrow.toString());
         booking.setBookinDates(dates);
 
+        //Response res = bookingServer.createBooking(booking);
         Response res = bookingServer.createBooking(TestHelper.serializeToJson(booking));
-        Assert.assertEquals(res.getStatus(),201, "Response status code is not as expected");
+        Assert.assertEquals(res.statusCode(),201, "Response status code is not as expected");
 
         //Verify the correct booking by checking the roomID
         BookingResponse bookingResponse = TestHelper.deserializeJson(res,BookingResponse.class);
@@ -112,7 +111,7 @@ public class BookingTest extends BaseApiTest {
         booking.setBookinDates(dates);
 
         Response res = bookingServer.createBooking(TestHelper.serializeToJson(booking));
-        Assert.assertEquals(res.getStatus(),201, "Response status code is not as expected");
+        Assert.assertEquals(res.statusCode(),201, "Response status code is not as expected");
 
         //Verify the correct booking by checking the roomID
         BookingResponse bookingResponse = TestHelper.deserializeJson(res,BookingResponse.class);
@@ -121,7 +120,7 @@ public class BookingTest extends BaseApiTest {
         //Now verify getting the booking by id
         int bookingID = bookingResponse.getBooking().getBookingId();
         res = bookingServer.getBooking(bookingID);
-        Assert.assertEquals(res.getStatus(),200, "Response status code is not as expected");
+        Assert.assertEquals(res.statusCode(),200, "Response status code is not as expected");
         BookingModal bookingResult = TestHelper.deserializeJson(res,BookingModal.class);
 
         //Verify the correct booking
@@ -162,8 +161,7 @@ public class BookingTest extends BaseApiTest {
         booking.setBookinDates(dates);
 
         Response res = bookingServer.createBooking(TestHelper.serializeToJson(booking));
-        Assert.assertEquals(res.getStatus(),409, "Response status code is not as expected");
-
+        Assert.assertEquals(res.statusCode(),409, "Response status code is not as expected");
     }
 
     @Story("Bookings API")
@@ -196,11 +194,10 @@ public class BookingTest extends BaseApiTest {
         booking.setBookinDates(dates);
 
         Response res = bookingServer.createBooking(TestHelper.serializeToJson(booking));
-        Assert.assertEquals(res.getStatus(),201, "Response status code is not as expected");
+        Assert.assertEquals(res.statusCode(),201, "Response status code is not as expected");
 
         //Again create the booking for same room
         res = bookingServer.createBooking(TestHelper.serializeToJson(booking));
-        Assert.assertEquals(res.getStatus(),409, "Response status code is not as expected");
-
+        Assert.assertEquals(res.statusCode(),409, "Response status code is not as expected");
     }
 }
