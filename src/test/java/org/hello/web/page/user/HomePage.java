@@ -23,7 +23,6 @@ public class HomePage extends BasePage<HomePage> {
         return homePageUrl;
     }
 
-
     @FindBy(className="login")
     WebElement loginLink;
 

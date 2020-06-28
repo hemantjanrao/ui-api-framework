@@ -8,9 +8,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.UnhandledAlertException;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Listeners;
+import org.testng.annotations.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -25,7 +23,7 @@ import java.util.Objects;
 @Listeners({CustomListener.class})
 public class BaseWebTest extends BaseTest {
 
-    @BeforeClass(alwaysRun = true)
+    @BeforeMethod(alwaysRun = true)
     public void initializeDriver() {
         log.info("Start initializing the driver");
         try {
@@ -37,7 +35,7 @@ public class BaseWebTest extends BaseTest {
         log.info("Finish initializing the driver");
     }
 
-    @AfterClass(alwaysRun = true)
+    @AfterMethod(alwaysRun = true)
     public void destroyDriver() {
         try {
 

@@ -6,7 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
 public abstract class BasePage<T extends BasePage> {
-    protected WebDriver driver;
+    protected static WebDriver driver;
 
     /**
      * Abstract Method to get the url of the page.

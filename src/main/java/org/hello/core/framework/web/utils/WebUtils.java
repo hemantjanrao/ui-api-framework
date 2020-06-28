@@ -60,6 +60,10 @@ public class WebUtils {
         elem.click();
     }
 
+    /**
+     * @param element WebElement
+     * @param value Value to be select
+     */
     public static void selectDropDownValue(WebElement element, String value) {
 
         Select select = new Select(element);
@@ -77,5 +81,11 @@ public class WebUtils {
         else if(count==1) {
             select.selectByValue(value);
         }
+    }
+
+    public static void fillValue(WebDriver driver, WebElement element, String value){
+        new WebDriverWait(driver, 30).until(ExpectedConditions.visibilityOf(element));
+
+        element.sendKeys(value);
     }
 }

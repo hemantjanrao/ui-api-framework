@@ -35,6 +35,7 @@ import java.util.concurrent.TimeUnit;
 
 public class DriverManager {
 
+	public static ThreadLocal<WebDriver> drivers = new ThreadLocal<WebDriver>();
 
 	private static Logger log = Logger.getLogger(DriverManager.class);
 
@@ -43,12 +44,22 @@ public class DriverManager {
 	 *
 	 * @return WebDriver| null
 	 */
-	public static WebDriver getWebDriver() {
+	public synchronized static WebDriver getWebDriver() {
 		ManagedBrowsers browser = ManagedBrowsers.valueOf(PropertyUtils.get(Environment.WEB_BROWSER).toUpperCase());
 		WebDriver driver = getWebdriver(browser);
 		driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		return driver;
+
+		drivers.set(driver);
+
+		return getDriver();
+	}
+
+	public static synchronized WebDriver getDriver() {
+		while (drivers.get() == null) {
+			getWebDriver();
+		}
+		return drivers.get();
 	}
 
 	/**
@@ -57,7 +68,7 @@ public class DriverManager {
 	 * @param browser Enum to specify the type of browser
 	 * @return WebDriver| null
 	 */
-	public static WebDriver getWebdriver(ManagedBrowsers browser) {
+	public static synchronized WebDriver getWebdriver(ManagedBrowsers browser) {
 		boolean isSeleniumGridEnabled = PropertyUtils.getBoolean(Environment.WEB_IS_GRID_ENABLED);
 		DesiredCapabilities cap = null;
 

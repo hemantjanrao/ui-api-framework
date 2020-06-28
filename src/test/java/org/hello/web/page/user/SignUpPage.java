@@ -9,6 +9,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
+import static org.hello.core.framework.web.utils.WebUtils.fillValue;
+
 
 public class SignUpPage extends BasePage {
 
@@ -101,21 +103,21 @@ public class SignUpPage extends BasePage {
     public void fillCreateActEmailField(String email)
     {
         log.info("Entering the email on Signup page to create account");
-        emailField.sendKeys(email);
+        fillValue(driver, emailField, email);
     }
 
     @Step("Enter the customer firstname: [{0}] field on Signup page")
     public void fillCustomerFirstNameField(String firstname)
     {
         log.info("Entering the firstname on Signup page to create account");
-        firstNameField.sendKeys(firstname);
+        fillValue(driver, firstNameField, firstname);
     }
 
     @Step("Enter the customer lastname: [{0}] field on Signup page")
     public void fillCustomerLastNameField(String lastName)
     {
         log.info("Entering the lastname on Signup page to create account");
-        lastNameField.sendKeys(lastName);
+        fillValue(driver, lastNameField, lastName);
     }
 
 
@@ -123,14 +125,14 @@ public class SignUpPage extends BasePage {
     public void fillpasswordField(String password)
     {
         log.info("Entering the password on Signup page to create account");
-        passwordField.sendKeys(password);
+        fillValue(driver, passwordField, password);
     }
 
     @Step("Enter the customer company: [{0}] field on Signup page")
     public void fillCustomerCompanyField(String company)
     {
         log.info("Entering the company on Signup page to create account");
-        companyField.sendKeys(company);
+        fillValue(driver, companyField, company);
     }
 
 
@@ -138,15 +140,15 @@ public class SignUpPage extends BasePage {
     public void fillCustomerCompleteAddress(String address, String addressLine2)
     {
         log.info("Entering the complete address on Signup page to create account");
-        addressField.sendKeys(address);
-        addressLine2Field.sendKeys(addressLine2);
+        fillValue(driver, addressField, address);
+        fillValue(driver, addressLine2Field, addressLine2);
     }
 
     @Step("Enter the customer city: [{0}] ")
     public void fillCustomerCityField(String city)
     {
         log.info("Entering the city");
-        cityField.sendKeys(city);
+        fillValue(driver, cityField, city);
     }
 
 

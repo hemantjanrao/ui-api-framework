@@ -25,16 +25,16 @@ public class UserAccountTest extends BaseWebTest {
     HomePage homePage = null;
     MyAccountPage myAccountPage = null;
 
-    @BeforeClass(alwaysRun=true)
-    public void beforeClass() {
-
-        homePage = new HomePage(driver);
-        loginPage = new LoginPage(driver);
-        signUpPage = new SignUpPage(driver);
-        productPage = new ProductPage(driver);
-        productOrderPage = new ProductOrderPage(driver);
-        myAccountPage = new MyAccountPage(driver);
-    }
+//    @BeforeClass(alwaysRun=true)
+//    public void beforeClass() {
+//
+//        homePage = new HomePage(driver);
+//        loginPage = new LoginPage(driver);
+//        signUpPage = new SignUpPage(driver);
+//        productPage = new ProductPage(driver);
+//        productOrderPage = new ProductOrderPage(driver);
+//        myAccountPage = new MyAccountPage(driver);
+//    }
 
     @DataProvider(name = "loginData")
     public Object[][] loginData() throws IOException {
@@ -47,6 +47,11 @@ public class UserAccountTest extends BaseWebTest {
     @Description("Verify user login with existing user")
     @TestID("d4777d40-adab-45e1-b38b-e84a21601005")
     public void logInTest(String fullName,String existingUserEmail,String existingUserPassword) {
+
+        homePage = new HomePage(driver);
+        loginPage = new LoginPage(driver);
+        myAccountPage = new MyAccountPage(driver);
+
         homePage.navigateTo();
         homePage.clickLoginLink();
         loginPage.navigateTo();
@@ -63,6 +68,11 @@ public class UserAccountTest extends BaseWebTest {
     @Description("Verify creating user using SignUp form")
     @TestID("563b3302-0a1f-4b46-823b-95cf631347ed")
     public void signInTest() {
+        homePage = new HomePage(driver);
+        signUpPage = new SignUpPage(driver);
+        myAccountPage = new MyAccountPage(driver);
+
+
         String email = "auto_"+ RandomStringUtils.randomAlphabetic(5)+"@testing.com";
         String name = "Firstname";
         String surname = "Lastname";
