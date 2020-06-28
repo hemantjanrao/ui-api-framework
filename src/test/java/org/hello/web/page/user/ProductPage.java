@@ -49,6 +49,8 @@ public class ProductPage extends BasePage<ProductPage> {
         try
         {
             WebElement product = driver.findElement(By.xpath("//a[@title='"+productName+"'and @class='product-name']"));
+            WebUtils.waitForElementToBeDisplayed(driver, product, 10);
+
             product.click();
         }
         catch(NoSuchElementException | StaleElementReferenceException e)

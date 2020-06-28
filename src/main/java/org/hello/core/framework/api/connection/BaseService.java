@@ -22,17 +22,6 @@ public abstract class BaseService {
      */
     protected abstract RequestSpecification getRequestSpec();
 
-//    /**
-//     * Used to define the RequestSpecification common to all operations
-//     * defined in the given service. For example:
-//     * <pre>
-//     *     <code>getDefaultRequestSpecification().then().response().statusCode(200);</code>
-//     * </pre>
-//     *
-//     * @return the RestAssured ResponseSpecification with appropriate defaults
-//     */
-//    protected abstract ResponseSpecification getResponseSpec();
-
     /**
      * Performs GET request of the URL.
      *
@@ -61,12 +50,11 @@ public abstract class BaseService {
      * @return The response from the request
      */
     protected Response request(Method method, Map<String, ?> params, String url) {
-        return (Response) getRequestSpec()
+        return getRequestSpec()
                 .params(params)
                 .when()
                 .request(method, url)
                 .then()
-                .log().all()
                 .extract().response();
     }
 
@@ -84,7 +72,6 @@ public abstract class BaseService {
                 .body(body)
                 .request(method, url)
                 .then()
-                .log().all()
                 .extract().response();
     }
 }

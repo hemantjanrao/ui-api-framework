@@ -162,7 +162,6 @@ public class BookingTest extends BaseApiTest {
 
         Response res = bookingServer.createBooking(TestHelper.serializeToJson(booking));
         Assert.assertEquals(res.statusCode(),409, "Response status code is not as expected");
-
     }
 
     @Story("Bookings API")

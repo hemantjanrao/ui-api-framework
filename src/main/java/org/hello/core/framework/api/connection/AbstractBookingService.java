@@ -4,8 +4,6 @@ import io.restassured.RestAssured;
 import io.restassured.http.Method;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-import io.restassured.specification.ResponseSpecification;
-import org.apache.http.HttpStatus;
 import org.hello.core.framework.utils.Environment;
 import org.hello.core.framework.utils.PropertyUtils;
 
