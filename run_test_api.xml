@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Api Automation Tests" parallel="classes"  thread-count="1">
+    <test name="Booking Tests">
+        <packages>
+            <package name="org.hello.test.api.*" />
+        </packages>
+    </test>
+</suite>

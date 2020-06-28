@@ -1,0 +1,55 @@
+version: "3.3"
+services:
+  selenium-hub:
+    image: selenium/hub
+    container_name: selenium-hub
+    ports:
+      - "4444:4444"
+    environment:
+      - GRID_MAX_SESSION=10
+      - GRID_BROWSER_TIMEOUT=300000
+      - GRID_TIMEOUT=300000
+
+  chrome1:
+    image: selenium/node-chrome-debug
+    depends_on:
+      - selenium-hub
+    environment:
+      - HUB_PORT_4444_TCP_ADDR=selenium-hub
+      - HUB_PORT_4444_TCP_PORT=4444
+      - VNC_PASSWORD=secret
+      - NODE_MAX_INSTANCES=2
+      - NODE_MAX_SESSION=2
+    volumes:
+      - "/dev/shm:/dev/shm"
+    ports:
+      - "4901:5900"
+
+
+#  chrome2:
+#    image: selenium/node-chrome-debug
+#    depends_on:
+#      - selenium-hub
+#    environment:
+#      - HUB_PORT_4444_TCP_ADDR=selenium-hub
+#      - HUB_PORT_4444_TCP_PORT=4444
+#      - VNC_PASSWORD=secret
+#      - NODE_MAX_INSTANCES=5
+#      - NODE_MAX_SESSION=5
+#    ports:
+#      - "4905:5900"
+
+  firefox:
+    image: selenium/node-firefox-debug
+    depends_on:
+      - selenium-hub
+    environment:
+      - HUB_PORT_4444_TCP_ADDR=selenium-hub
+      - HUB_PORT_4444_TCP_PORT=4444
+      - VNC_PASSWORD=secret
+      - NODE_MAX_INSTANCES=2
+      - NODE_MAX_SESSION=2
+    volumes:
+      - "/dev/shm:/dev/shm"
+    ports:
+      - "4906:5900"
