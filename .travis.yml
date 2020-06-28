@@ -12,5 +12,4 @@ cache:
     - $HOME/.m2
 
 script:
-  - docker-compose -f grid.yml up --scale app=5
   - mvn test
