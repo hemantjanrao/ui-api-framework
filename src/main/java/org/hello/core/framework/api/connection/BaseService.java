@@ -4,7 +4,6 @@ import com.google.common.collect.ImmutableMap;
 import io.restassured.http.Method;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-import io.restassured.specification.ResponseSpecification;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
@@ -23,16 +22,16 @@ public abstract class BaseService {
      */
     protected abstract RequestSpecification getRequestSpec();
 
-    /**
-     * Used to define the RequestSpecification common to all operations
-     * defined in the given service. For example:
-     * <pre>
-     *     <code>getDefaultRequestSpecification().then().response().statusCode(200);</code>
-     * </pre>
-     *
-     * @return the RestAssured ResponseSpecification with appropriate defaults
-     */
-    protected abstract ResponseSpecification getResponseSpec();
+//    /**
+//     * Used to define the RequestSpecification common to all operations
+//     * defined in the given service. For example:
+//     * <pre>
+//     *     <code>getDefaultRequestSpecification().then().response().statusCode(200);</code>
+//     * </pre>
+//     *
+//     * @return the RestAssured ResponseSpecification with appropriate defaults
+//     */
+//    protected abstract ResponseSpecification getResponseSpec();
 
     /**
      * Performs GET request of the URL.
@@ -67,8 +66,8 @@ public abstract class BaseService {
                 .when()
                 .request(method, url)
                 .then()
-                .spec(getResponseSpec())
-                .extract();
+                .log().all()
+                .extract().response();
     }
 
     /**
@@ -80,12 +79,12 @@ public abstract class BaseService {
      * @return The response from the request
      */
     protected Response request(Method method, Object body, String url) {
-        return (Response) getRequestSpec()
+        return getRequestSpec()
                 .when()
                 .body(body)
                 .request(method, url)
                 .then()
-                .spec(getResponseSpec())
-                .extract();
+                .log().all()
+                .extract().response();
     }
 }

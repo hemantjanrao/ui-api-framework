@@ -71,7 +71,8 @@ public class BookingTest extends BaseApiTest {
         dates.put("checkout",tomorrow.toString());
         booking.setBookinDates(dates);
 
-        Response res = bookingServer.createBooking(booking);
+        //Response res = bookingServer.createBooking(booking);
+        Response res = bookingServer.createBooking(TestHelper.serializeToJson(booking));
         Assert.assertEquals(res.statusCode(),201, "Response status code is not as expected");
 
         //Verify the correct booking by checking the roomID
@@ -109,7 +110,7 @@ public class BookingTest extends BaseApiTest {
         dates.put("checkout",tomorrow.toString());
         booking.setBookinDates(dates);
 
-        Response res = bookingServer.createBooking(booking);
+        Response res = bookingServer.createBooking(TestHelper.serializeToJson(booking));
         Assert.assertEquals(res.statusCode(),201, "Response status code is not as expected");
 
         //Verify the correct booking by checking the roomID
@@ -159,7 +160,7 @@ public class BookingTest extends BaseApiTest {
         dates.put("checkout",past.toString());
         booking.setBookinDates(dates);
 
-        Response res = bookingServer.createBooking(booking);
+        Response res = bookingServer.createBooking(TestHelper.serializeToJson(booking));
         Assert.assertEquals(res.statusCode(),409, "Response status code is not as expected");
 
     }
@@ -193,12 +194,11 @@ public class BookingTest extends BaseApiTest {
         dates.put("checkout",tomorrow.toString());
         booking.setBookinDates(dates);
 
-        Response res = bookingServer.createBooking(booking);
+        Response res = bookingServer.createBooking(TestHelper.serializeToJson(booking));
         Assert.assertEquals(res.statusCode(),201, "Response status code is not as expected");
 
         //Again create the booking for same room
-        res = bookingServer.createBooking(booking);
+        res = bookingServer.createBooking(TestHelper.serializeToJson(booking));
         Assert.assertEquals(res.statusCode(),409, "Response status code is not as expected");
-
     }
 }

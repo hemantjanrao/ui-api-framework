@@ -2,7 +2,6 @@ package org.hello.api.client;
 
 import io.qameta.allure.Step;
 import io.restassured.response.Response;
-import org.hello.api.entity.BookingModal;
 import org.hello.core.framework.api.connection.AbstractBookingService;
 
 public class BookingServer extends AbstractBookingService {
@@ -25,7 +24,7 @@ public class BookingServer extends AbstractBookingService {
      * @return Response
      */
     @Step("Create booking")
-    public Response createBooking(BookingModal booking){
+    public Response createBooking(String booking){
         log.info("Creating booking");
 
         return postRequest(BOOKING_URL, booking);

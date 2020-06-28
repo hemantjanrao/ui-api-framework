@@ -29,15 +29,6 @@ public class AbstractBookingService extends BaseService {
                 .accept("application/json");
     }
 
-    /**
-     * @return ResponseSpecification
-     */
-    @Override
-    protected ResponseSpecification getResponseSpec() {
-        return RestAssured.expect().response()
-                .statusCode(HttpStatus.SC_OK);
-    }
-
     protected Response getRequest(String url){
         return request(Method.GET, url);
     }
