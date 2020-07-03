@@ -83,6 +83,11 @@ public class WebUtils {
         }
     }
 
+    /**
+     * @param driver WebDriver
+     * @param element Webelement
+     * @param value Value to be set
+     */
     public static void fillValue(WebDriver driver, WebElement element, String value){
         new WebDriverWait(driver, 30).until(ExpectedConditions.visibilityOf(element));
 
