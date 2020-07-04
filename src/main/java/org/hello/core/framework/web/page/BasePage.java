@@ -22,7 +22,7 @@ public abstract class BasePage<T extends BasePage> {
      */
     public BasePage(WebDriver driver, Boolean waitForPageLoad) {
         this.driver = driver;
-        PageFactory.initElements(driver,this);
+        MyPageFactory.initElements(driver,this);
     }
 
     /**

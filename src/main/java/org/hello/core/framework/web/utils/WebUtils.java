@@ -16,14 +16,14 @@ public class WebUtils {
      * @param timeout
      */
     public static void waitForElementToBeDisplayed(WebDriver driver, WebElement element, long timeout) {
-        try {
-            await("Element is not displayed").atMost(timeout, SECONDS)
-                    .until(element::isDisplayed);
-        }
-        catch(TimeoutException e) {
-            new WebDriverWait(driver, timeout).until(ExpectedConditions.visibilityOf(element));
-            throw new ElementNotVisibleException("Timeout"+element+" is not visible/present.");
-        }
+//        try {
+//            await("Element is not displayed").atMost(timeout, SECONDS)
+//                    .until(element::isDisplayed);
+//        }
+//        catch(TimeoutException e) {
+//            new WebDriverWait(driver, timeout).until(ExpectedConditions.visibilityOf(element));
+//            throw new ElementNotVisibleException("Timeout"+element+" is not visible/present.");
+//        }
     }
 
     /**
