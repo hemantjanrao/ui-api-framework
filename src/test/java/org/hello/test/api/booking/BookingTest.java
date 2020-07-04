@@ -21,7 +21,6 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 
 @Epic("Api Automation Task")
@@ -53,19 +52,18 @@ public class BookingTest extends BaseApiTest {
     @TestID("4414f830-6172-47e3-8344-266fd64c6107")
     public void verifyCreatingBooking(){
 
-        int roomid = RandomUtils.nextInt(1,200);
+        int roomId = RandomUtils.nextInt(1,200);
         String firstName = "auto_"+RandomStringUtils.randomAlphabetic(5);
         String lastName = "auto_"+RandomStringUtils.randomAlphabetic(5);
         String email = "auto_"+RandomStringUtils.randomAlphabetic(5)+"@test.com";
 
         // Createing check-in and checkout date
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDateTime today = LocalDateTime.now();
         LocalDateTime tomorrow = today.plusDays(2);
 
         //Creating Booking model
         BookingModal booking = new BookingModal();
-        booking.setRoomId(roomid);
+        booking.setRoomId(roomId);
         booking.setFirstName(firstName);
         booking.setLastName(lastName);
         booking.setEmail(email);
@@ -98,7 +96,6 @@ public class BookingTest extends BaseApiTest {
         String email = "auto_"+RandomStringUtils.randomAlphabetic(5)+"@test.com";
 
         // Creating check-in and checkout date
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDateTime today = LocalDateTime.now();
         LocalDateTime tomorrow = today.plusDays(2);
 
@@ -148,7 +145,6 @@ public class BookingTest extends BaseApiTest {
         String email = "auto_"+RandomStringUtils.randomAlphabetic(5)+"@test.com";
 
         // Creating check-in and checkout date with checkout date less than check-in date
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDateTime today = LocalDateTime.now();
         LocalDateTime past = today.minusDays(2);
 
@@ -181,7 +177,6 @@ public class BookingTest extends BaseApiTest {
         String email = "auto_"+RandomStringUtils.randomAlphabetic(5)+"@test.com";
 
         // Creating check-in and checkout date with checkout date less than check-in date
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDateTime today = LocalDateTime.now();
         LocalDateTime tomorrow = today.plusDays(2);
 

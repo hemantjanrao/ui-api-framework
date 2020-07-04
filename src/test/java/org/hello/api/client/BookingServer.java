@@ -2,21 +2,26 @@ package org.hello.api.client;
 
 import io.qameta.allure.Step;
 import io.restassured.response.Response;
-import org.hello.core.framework.api.connection.AbstractBookingService;
+import org.hello.core.framework.api.connection.AbstractService;
 
-public class BookingServer extends AbstractBookingService {
+public class BookingServer extends AbstractService {
 
     private static final String BOOKING_URL = "/booking/";
 
     /**
      * Constructor
      *
-     * @param host
-     * @param port
-     * @param protocol
+     * @param host Host Name
+     * @param port Port Number
+     * @param protocol Protocol
      */
     public BookingServer(String host, int port, String protocol) {
         super(host, port, protocol);
+    }
+
+    @Override
+    protected void login(String username, String password) {
+        log.info("Currently no login is required");
     }
 
     /**
@@ -48,7 +53,7 @@ public class BookingServer extends AbstractBookingService {
     @Step("Getting the booking using the id:[{0}]")
     public Response getBooking(int id){
         log.info("Getting the booking by Id");
-        String url = BOOKING_URL+"/"+id;
+        String url = BOOKING_URL+""+id;
 
         return getRequest(url);
     }

@@ -31,6 +31,6 @@ public class HomePage extends BasePage<HomePage> {
     public void clickLoginLink()
     {
         log.info("Clicking 'Login Link' on Home page");
-        WebUtils.clickWithWaitForElement(driver,loginLink,10);
+        WebUtils.clickWithWaitForElement(driver,loginLink,60);
     }
 }

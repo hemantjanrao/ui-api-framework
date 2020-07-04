@@ -1,7 +1,9 @@
 package org.hello.core.framework.web.utils;
 
 import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import static org.awaitility.Awaitility.*;
 import static java.util.concurrent.TimeUnit.*;
@@ -19,6 +21,7 @@ public class WebUtils {
                     .until(element::isDisplayed);
         }
         catch(TimeoutException e) {
+            new WebDriverWait(driver, timeout).until(ExpectedConditions.visibilityOf(element));
             throw new ElementNotVisibleException("Timeout"+element+" is not visible/present.");
         }
     }

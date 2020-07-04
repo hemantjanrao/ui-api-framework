@@ -7,26 +7,18 @@ import io.restassured.specification.RequestSpecification;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
-public class AbstractBookingService extends BaseService {
+public abstract class AbstractService extends BaseService {
 
-    private String host;
-    private String protocol;
-    private String username;
-    private String password;
-    private int port;
-    protected static Logger log = LogManager.getLogger(AbstractBookingService.class);
+    protected static Logger log = LogManager.getLogger(AbstractService.class);
 
     /**
      * Constructor
-     * @param host
-     * @param port
-     * @param protocol
+     * @param host Host Name
+     * @param port Port Number
+     * @param protocol Protocol
      */
-    public AbstractBookingService(String host, int port, String protocol) {
-        this.host = host;
-        this.port = port;
-        this.protocol = protocol;
-        rootURL = this.protocol+"://"+this.host+":"+this.port;
+    public AbstractService(String host, int port, String protocol) {
+        rootURL = protocol +"://"+ host +":"+ port;
     }
 
     /**
@@ -52,4 +44,6 @@ public class AbstractBookingService extends BaseService {
     protected Response postRequest(String url, Object body) {
         return request(Method.POST, body, url);
     }
+
+    protected abstract void login(String username, String password);
 }
