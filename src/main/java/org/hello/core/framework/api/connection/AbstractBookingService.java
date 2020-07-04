@@ -4,24 +4,37 @@ import io.restassured.RestAssured;
 import io.restassured.http.Method;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-import org.hello.core.framework.utils.Environment;
-import org.hello.core.framework.utils.PropertyUtils;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 
 public class AbstractBookingService extends BaseService {
-    String protocol = PropertyUtils.get(Environment.API_PROTOCOL);
-    String host = PropertyUtils.get(Environment.API_HOST);
-    String port = PropertyUtils.get(Environment.API_PORT);
+
+    private String host;
+    private String protocol;
+    private String username;
+    private String password;
+    private int port;
+    protected static Logger log = LogManager.getLogger(AbstractBookingService.class);
+
+    /**
+     * Constructor
+     * @param host
+     * @param port
+     * @param protocol
+     */
+    public AbstractBookingService(String host, int port, String protocol) {
+        this.host = host;
+        this.port = port;
+        this.protocol = protocol;
+        rootURL = this.protocol+"://"+this.host+":"+this.port;
+    }
 
     /**
      * @return RequestSpecification
      */
     protected RequestSpecification getRequestSpec(){
-
-        String str = String.format("%s"+"://"+"%s"+":"+"%s",protocol, host, port);
-
-        System.out.println("URL : "+ str);
         return RestAssured.given()
-                .baseUri(str)
+                .baseUri(rootURL)
                 .relaxedHTTPSValidation()
                 .contentType("application/json")
                 .accept("application/json");

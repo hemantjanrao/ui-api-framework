@@ -9,14 +9,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
-
 public class LoginPage extends BasePage<LoginPage> {
-
-    public LoginPage(WebDriver wd) {
-        super(wd);
-    }
-
-    private Logger log = Logger.getLogger(getClass());
 
     /**
      * Page web elements
@@ -24,33 +17,28 @@ public class LoginPage extends BasePage<LoginPage> {
 
     @FindBy(id="email")
     WebElement emailTextField;
-
     @FindBy(id="passwd")
     WebElement passwordField;
-
     @FindBy(id="SubmitLogin")
     WebElement loginSubmitBtn;
-
     @FindBy(css="h1")
     WebElement successfulLgnLocator;
-
     @FindBy(className="account")
     WebElement fullNameAfterLoginLocator;
-
     @FindBy(className="info-account")
     WebElement accountWelcomeMsg;
-
     @FindBy(className="logout")
     WebElement logoutLnk;
+    private Logger log = Logger.getLogger(getClass());
 
-
-
+    public LoginPage(WebDriver wd) {
+        super(wd);
+    }
 
     @Override
     public String getURL() {
         return "?controller=authentication&back=my-account";
     }
-
 
     @Step("Enter the email : [{0}]")
     public void fillEmailField(String email) {
@@ -58,13 +46,11 @@ public class LoginPage extends BasePage<LoginPage> {
         emailTextField.sendKeys(email);
     }
 
-
     @Step("Enter the password : [{0}]")
     public void fillPasswordField(String password) {
         log.info("Entering the password");
         passwordField.sendKeys(password);
     }
-
 
     @Step("Submit the login form")
     public void clickSubmitBtn() {
@@ -82,6 +68,4 @@ public class LoginPage extends BasePage<LoginPage> {
         Assert.assertTrue(WebUtils.isElementPresent(logoutLnk),"Logout link not present after login");
         Assert.assertTrue(driver.getCurrentUrl().contains("controller=my-account"),"Current url is not as expected after successful login");
     }
-
-
 }

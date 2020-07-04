@@ -11,6 +11,7 @@ import java.util.Map;
 
 public abstract class BaseService {
 
+    protected String rootURL;
     protected static final Logger log = LogManager.getLogger(BaseService.class);
 
     /**

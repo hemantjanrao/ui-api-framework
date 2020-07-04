@@ -9,6 +9,17 @@ public class BookingServer extends AbstractBookingService {
     private static final String BOOKING_URL = "/booking/";
 
     /**
+     * Constructor
+     *
+     * @param host
+     * @param port
+     * @param protocol
+     */
+    public BookingServer(String host, int port, String protocol) {
+        super(host, port, protocol);
+    }
+
+    /**
      * Method to get all the bookings from server
      * @return Response
      */

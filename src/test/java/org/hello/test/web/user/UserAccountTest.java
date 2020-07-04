@@ -57,7 +57,6 @@ public class UserAccountTest extends BaseWebTest {
         myAccountPage.logoutUser();
     }
 
-
     @Story("User Account Sign up")
     @Test(groups= {Groups.CATEGORY_SANITY},description="Verify creating user using SignUp form")
     @Description("Verify creating user using SignUp form")
@@ -77,6 +76,7 @@ public class UserAccountTest extends BaseWebTest {
         String phoneNumber = "12345123123";
         String mobilePhoneNumber = "12345123123";
         String addressAlias="qwerty";
+
         homePage.navigateTo();
         homePage.clickLoginLink();
         signUpPage.fillCreateActEmailField(email);

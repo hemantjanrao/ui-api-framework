@@ -14,6 +14,8 @@ import org.hello.api.client.BookingServer;
 import org.hello.api.entity.BookingModal;
 import org.hello.api.entity.response.BookingListResponse;
 import org.hello.api.entity.response.BookingResponse;
+import org.hello.core.framework.utils.Environment;
+import org.hello.core.framework.utils.PropertyUtils;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -29,7 +31,9 @@ public class BookingTest extends BaseApiTest {
 
     @BeforeClass
     public void beforeBookingClass(){
-        bookingServer = new BookingServer();
+        bookingServer = new BookingServer(PropertyUtils.get(Environment.API_HOST),
+                PropertyUtils.getInt(Environment.API_PORT),
+                PropertyUtils.get(Environment.API_PROTOCOL));
     }
 
     @Story("Bookings API")
