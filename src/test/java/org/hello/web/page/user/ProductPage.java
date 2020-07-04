@@ -78,7 +78,7 @@ public class ProductPage extends BasePage<ProductPage> {
     public void clickProceedToChkoutBtn()
     {
         log.info("Clicking  'Proceed TO Checkout' on Product Page");
-        WebUtils.clickWithWaitForElement(driver,btnProceedToChkoutOnCartPopUp,10);
+        WebUtils.clickWithWaitForElement(driver,btnProceedToChkoutOnCartPopUp,60);
 
     }
 }

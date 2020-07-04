@@ -9,12 +9,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-
 public class PropertyUtils {
     private static final String PROPERTY_FILE_NAME = "config.properties";
     private static final Properties PROPERTIES = getProperties();
     private static Logger log = Logger.getLogger(PropertyUtils.class);
-
 
     /**
      *

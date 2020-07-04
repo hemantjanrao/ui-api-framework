@@ -5,6 +5,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import static org.awaitility.Awaitility.*;
+import static java.util.concurrent.TimeUnit.*;
 public class WebUtils {
 
     /**
@@ -15,9 +17,11 @@ public class WebUtils {
      */
     public static void waitForElementToBeDisplayed(WebDriver driver, WebElement element, long timeout) {
         try {
-            new WebDriverWait(driver, timeout).until(ExpectedConditions.visibilityOf(element));
+            await("Element is not displayed").atMost(timeout, SECONDS)
+                    .until(element::isDisplayed);
         }
         catch(TimeoutException e) {
+            new WebDriverWait(driver, timeout).until(ExpectedConditions.visibilityOf(element));
             throw new ElementNotVisibleException("Timeout"+element+" is not visible/present.");
         }
     }
@@ -34,7 +38,6 @@ public class WebUtils {
         return null;
     }
 
-
     /**
      * Method to check the presence of element
      * @param element
@@ -48,7 +51,6 @@ public class WebUtils {
             return false;
         }
     }
-
 
     /**
      * Method to click on element after waiting for specified time

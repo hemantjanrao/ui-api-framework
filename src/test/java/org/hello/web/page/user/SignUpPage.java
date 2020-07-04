@@ -10,7 +10,7 @@ import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
 
-public class SignUpPage extends BasePage {
+public class SignUpPage extends BasePage<SignUpPage> {
 
     public SignUpPage(WebDriver wd) {
         super(wd);
