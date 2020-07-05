@@ -43,13 +43,13 @@ public class LoginPage extends BasePage<LoginPage> {
     @Step("Enter the email : [{0}]")
     public void fillEmailField(String email) {
         log.info("Entering the email address");
-        emailTextField.sendKeys(email);
+        WebUtils.fill(driver, emailTextField,email);
     }
 
     @Step("Enter the password : [{0}]")
     public void fillPasswordField(String password) {
         log.info("Entering the password");
-        passwordField.sendKeys(password);
+        WebUtils.fill(driver, passwordField,password);
     }
 
     @Step("Submit the login form")

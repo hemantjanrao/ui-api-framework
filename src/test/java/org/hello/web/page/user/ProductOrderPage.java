@@ -94,7 +94,6 @@ public class ProductOrderPage extends BasePage<ProductOrderPage> {
         WebUtils.clickWithWaitForElement(driver,payByBankWireLink,10);
     }
 
-
     @Step("Confirm the order")
     public void clickConfirmOrder()
     {

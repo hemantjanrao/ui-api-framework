@@ -101,21 +101,21 @@ public class SignUpPage extends BasePage<SignUpPage> {
     public void fillCreateActEmailField(String email)
     {
         log.info("Entering the email on Signup page to create account");
-        emailField.sendKeys(email);
+        WebUtils.fill(driver, emailField, email);
     }
 
     @Step("Enter the customer firstname: [{0}] field on Signup page")
     public void fillCustomerFirstNameField(String firstname)
     {
         log.info("Entering the firstname on Signup page to create account");
-        firstNameField.sendKeys(firstname);
+        WebUtils.fill(driver, firstNameField, firstname);
     }
 
     @Step("Enter the customer lastname: [{0}] field on Signup page")
     public void fillCustomerLastNameField(String lastName)
     {
         log.info("Entering the lastname on Signup page to create account");
-        lastNameField.sendKeys(lastName);
+        WebUtils.fill(driver, lastNameField, lastName);
     }
 
 
@@ -123,14 +123,14 @@ public class SignUpPage extends BasePage<SignUpPage> {
     public void fillpasswordField(String password)
     {
         log.info("Entering the password on Signup page to create account");
-        passwordField.sendKeys(password);
+        WebUtils.fill(driver, passwordField, password);
     }
 
     @Step("Enter the customer company: [{0}] field on Signup page")
     public void fillCustomerCompanyField(String company)
     {
         log.info("Entering the company on Signup page to create account");
-        companyField.sendKeys(company);
+        WebUtils.fill(driver, companyField, company);
     }
 
 
@@ -138,15 +138,15 @@ public class SignUpPage extends BasePage<SignUpPage> {
     public void fillCustomerCompleteAddress(String address, String addressLine2)
     {
         log.info("Entering the complete address on Signup page to create account");
-        addressField.sendKeys(address);
-        addressLine2Field.sendKeys(addressLine2);
+        WebUtils.fill(driver, addressField, address);
+        WebUtils.fill(driver, addressLine2Field, addressLine2);
     }
 
     @Step("Enter the customer city: [{0}] ")
     public void fillCustomerCityField(String city)
     {
         log.info("Entering the city");
-        cityField.sendKeys(city);
+        WebUtils.fill(driver, cityField, city);
     }
 
 
@@ -154,14 +154,14 @@ public class SignUpPage extends BasePage<SignUpPage> {
     public void fillCustomerPostalAddressCode(int postalCode)
     {
         log.info("Entering the postal code on Signup page to create account");
-        postalCodeField.sendKeys(String.valueOf(postalCode));
+        WebUtils.fill(driver, postalCodeField, String.valueOf(postalCode));
     }
 
     @Step("Enter the customer additional info:[{0}]")
     public void fillAdditionalInfoField(String addtionalInfo)
     {
         log.info("Entering the additional info on Signup page to create account");
-        additionalInfoField.sendKeys(addtionalInfo);
+        WebUtils.fill(driver, additionalInfoField, addtionalInfo);
     }
 
 
@@ -169,14 +169,14 @@ public class SignUpPage extends BasePage<SignUpPage> {
     public void fillCustomerHomePhnNoField(String phoneNumber)
     {
         log.info("Entering the home phone on Signup page to create account");
-        homePhoneNoField.sendKeys(phoneNumber);
+        WebUtils.fill(driver, homePhoneNoField, phoneNumber);
     }
 
     @Step("Enter the customer mobile phone number:[{0}] on SignUp Page")
     public void fillCustomerMobilePhnNoField(String phoneNumber)
     {
         log.info("Entering the mobile phone on Signup page to create account");
-        mobilePhoneNoField.sendKeys(phoneNumber);
+        WebUtils.fill(driver, mobilePhoneNoField, phoneNumber);
     }
 
 
@@ -184,7 +184,7 @@ public class SignUpPage extends BasePage<SignUpPage> {
     public void fillAddressAliasField(String addressAlias)
     {
         log.info("Entering the address alias on Signup page to create account");
-        addressAliasField.sendKeys(addressAlias);
+        WebUtils.fill(driver, addressAliasField, addressAlias);
     }
 
 

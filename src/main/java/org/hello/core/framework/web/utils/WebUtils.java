@@ -26,6 +26,11 @@ public class WebUtils {
         }
     }
 
+    public static void fill(WebDriver driver, WebElement element, String value){
+        waitForElementToBeDisplayed(driver, element, 60);
+        element.sendKeys(value);
+    }
+
     /**
      * Method to get the text value from element
      * @param elem

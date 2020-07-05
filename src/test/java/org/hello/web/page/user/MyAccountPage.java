@@ -41,7 +41,7 @@ public class MyAccountPage extends BasePage<MyAccountPage> {
     {
         if(WebUtils.isElementPresent(logoutLink))
         {
-            logoutLink.click();
+            WebUtils.clickWithWaitForElement(driver,logoutLink , 30);
         }
     }
 }
