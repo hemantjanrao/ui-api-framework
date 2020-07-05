@@ -35,7 +35,14 @@ public class ProductPage extends BasePage<ProductPage> {
     @FindBy(css="div[id='uniform-group_1'] select")
     WebElement selectSizeLocator;
 
+    @FindBy(id="bigpic")
+    WebElement imgBigPic;
 
+    @FindBy(xpath="//a[@title='Next']")
+    WebElement nextImage;
+
+    @FindBy(xpath="//a[@title='Previous']")
+    WebElement previousImage;
 
     /***
      *
@@ -58,6 +65,50 @@ public class ProductPage extends BasePage<ProductPage> {
             throw new ElementNotVisibleException("Product -'"+productName+"' is not visible/present");
         }
     }
+
+    public void scrollImages(String productName){
+        log.info("Scrolling the images");
+
+        try
+        {
+            WebUtils.waitForElementToBeDisplayed(driver, imgBigPic, 30);
+            imgBigPic.click();
+        }
+        catch(NoSuchElementException | StaleElementReferenceException e)
+        {
+            throw new ElementNotVisibleException("Product -'"+productName+"' is not visible/present");
+        }
+    }
+
+    public void gotoNextImage(){
+        log.info("Next Image");
+
+        try
+        {
+            WebUtils.waitForElementToBeDisplayed(driver, nextImage, 30);
+            nextImage.click();
+        }
+        catch(NoSuchElementException | StaleElementReferenceException e)
+        {
+            throw new ElementNotVisibleException("Image not found");
+        }
+    }
+
+    public void gotoPreviousImage(){
+        log.info("Next Image");
+
+        try
+        {
+            WebUtils.waitForElementToBeDisplayed(driver, previousImage, 30);
+            previousImage.click();
+        }
+        catch(NoSuchElementException | StaleElementReferenceException e)
+        {
+            throw new ElementNotVisibleException("Image not found");
+        }
+    }
+
+
 
     @Step("Click on 'Add To Cart' Product Page")
     public void clickAddToCartBtn()

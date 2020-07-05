@@ -64,6 +64,24 @@ public class CheckOutTest extends BaseWebTest {
         productOrderPage.clickConfirmOrder();
         productOrderPage.verifyOrderCompletion();
         myAccountPage.logoutUser();
+    }
 
+    @Story("Product Scroll")
+    @Test(groups= {Groups.CATEGORY_SANITY}, description="Verify user can checkout and place order after login")
+    @Description("Image scroll")
+    public void verifyImageScroll(){
+
+        String existingUserEmail = "auto_new@testing.com";
+        String existingUserPassword = "qwerty";
+        homePage.navigateTo();
+        homePage.clickLoginLink();
+        loginPage.fillEmailField(existingUserEmail);
+        loginPage.fillPasswordField(existingUserPassword);
+        loginPage.clickSubmitBtn();
+        myAccountPage.clickLinkOnMyAcctPage("Women");
+        productPage.selectProductFromPage("Faded Short Sleeve T-shirts");
+        productPage.scrollImages("Faded Short Sleeve T-shirts");
+        productPage.gotoNextImage();
+        productPage.gotoPreviousImage();
     }
 }

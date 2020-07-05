@@ -54,6 +54,4 @@ public class PropertyUtils {
     public static boolean getBoolean(Environment param) {
         return Boolean.parseBoolean(get(param).trim());
     }
-
-
 }

@@ -56,8 +56,6 @@ public class ProductOrderPage extends BasePage<ProductOrderPage> {
     @FindBy(css="p[class='cheque-indent'] strong")
     WebElement confirOrderMsgLocator;
 
-
-
     @Step("Click  'Proceed To Checkout' on Product Order Page")
     public void clickProceedToChkoutBtn()
     {

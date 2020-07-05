@@ -40,7 +40,6 @@ public class BaseWebTest extends BaseTest {
     @AfterClass(alwaysRun = true)
     public void destroyDriver() {
         try {
-
             log.info("Destroying the driver");
             driver.quit();
         } catch (UnhandledAlertException e) {
@@ -52,7 +51,6 @@ public class BaseWebTest extends BaseTest {
      * Method to take screen shot, save as file. Also attach it to allure report
      *
      * @param testName name of the test running
-     * @throws IOException
      */
     @Attachment(value = "Web Page Screenshot", type = "image/png")
     public byte[] takeScreenShot(String testName) {
